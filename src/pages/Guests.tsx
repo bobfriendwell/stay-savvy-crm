@@ -16,7 +16,8 @@ import {
   TagIcon,
   PhoneIcon,
   MailIcon,
-  InstagramIcon
+  InstagramIcon,
+  XIcon
 } from "lucide-react";
 import {
   Select,
@@ -33,6 +34,17 @@ import {
   TableHeader, 
   TableRow 
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 const mockGuests = [
   {
@@ -145,6 +157,47 @@ const mockGuests = [
 const Guests = () => {
   const [search, setSearch] = useState("");
   const [filterLevel, setFilterLevel] = useState<string>("all");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [newGuest, setNewGuest] = useState({
+    name: "",
+    nameEn: "",
+    phone: "",
+    email: "",
+    line: "",
+    instagram: "",
+    source: "官網",
+    level: "一般",
+    tags: "",
+    notes: ""
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNewGuest(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectChange = (name: string, value: string) => {
+    setNewGuest(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAddGuest = () => {
+    // 在真實情況下，這裡會進行API調用來保存新旅客
+    // 目前僅模擬成功提示
+    toast.success(`成功新增旅客：${newGuest.name}`);
+    setNewGuest({
+      name: "",
+      nameEn: "",
+      phone: "",
+      email: "",
+      line: "",
+      instagram: "",
+      source: "官網",
+      level: "一般",
+      tags: "",
+      notes: ""
+    });
+    setIsDialogOpen(false);
+  };
 
   const filteredGuests = mockGuests.filter(guest => {
     const matchSearch = search === "" || 
@@ -204,10 +257,161 @@ const Guests = () => {
                   <SelectItem value="一般">一般</SelectItem>
                 </SelectContent>
               </Select>
-              <Button className="ios-button gap-2">
-                <PlusIcon className="h-4 w-4" />
-                新增旅客
-              </Button>
+              
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="ios-button gap-2">
+                    <PlusIcon className="h-4 w-4" />
+                    新增旅客
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[525px]">
+                  <DialogHeader>
+                    <DialogTitle>新增旅客</DialogTitle>
+                    <DialogDescription>
+                      填寫下列資料以新增旅客資訊到系統中
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">中文姓名</Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          value={newGuest.name}
+                          onChange={handleInputChange}
+                          placeholder="如：王小明"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="nameEn">英文姓名</Label>
+                        <Input
+                          id="nameEn"
+                          name="nameEn"
+                          value={newGuest.nameEn}
+                          onChange={handleInputChange}
+                          placeholder="如：Wang Xiao Ming"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">電話</Label>
+                        <Input
+                          id="phone"
+                          name="phone"
+                          value={newGuest.phone}
+                          onChange={handleInputChange}
+                          placeholder="如：0912345678"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={newGuest.email}
+                          onChange={handleInputChange}
+                          placeholder="如：example@mail.com"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="line">LINE ID</Label>
+                        <Input
+                          id="line"
+                          name="line"
+                          value={newGuest.line}
+                          onChange={handleInputChange}
+                          placeholder="如：@userid"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="instagram">Instagram</Label>
+                        <Input
+                          id="instagram"
+                          name="instagram"
+                          value={newGuest.instagram}
+                          onChange={handleInputChange}
+                          placeholder="如：username"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="source">來源平台</Label>
+                        <Select 
+                          value={newGuest.source} 
+                          onValueChange={(value) => handleSelectChange("source", value)}
+                        >
+                          <SelectTrigger id="source">
+                            <SelectValue placeholder="選擇來源" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="官網">官網</SelectItem>
+                            <SelectItem value="Booking.com">Booking.com</SelectItem>
+                            <SelectItem value="Agoda">Agoda</SelectItem>
+                            <SelectItem value="Expedia">Expedia</SelectItem>
+                            <SelectItem value="LINE@">LINE@</SelectItem>
+                            <SelectItem value="Walk-in">Walk-in</SelectItem>
+                            <SelectItem value="朋友推薦">朋友推薦</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="level">會員等級</Label>
+                        <Select 
+                          value={newGuest.level} 
+                          onValueChange={(value) => handleSelectChange("level", value)}
+                        >
+                          <SelectTrigger id="level">
+                            <SelectValue placeholder="選擇等級" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="一般">一般</SelectItem>
+                            <SelectItem value="銀卡">銀卡</SelectItem>
+                            <SelectItem value="金卡">金卡</SelectItem>
+                            <SelectItem value="黑卡">黑卡</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="tags">標籤（以逗號分隔）</Label>
+                      <Input
+                        id="tags"
+                        name="tags"
+                        value={newGuest.tags}
+                        onChange={handleInputChange}
+                        placeholder="如：常客,商務旅客"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="notes">備註</Label>
+                      <Input
+                        id="notes"
+                        name="notes"
+                        value={newGuest.notes}
+                        onChange={handleInputChange}
+                        placeholder="如：喜歡安靜的房間"
+                      />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <Button variant="outline" onClick={() => setIsDialogOpen(false)}>取消</Button>
+                    <Button onClick={handleAddGuest}>新增</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+              
               <Button variant="outline" className="ios-button-secondary w-10 p-0 md:w-auto md:px-3">
                 <DownloadIcon className="h-4 w-4 md:mr-2" />
                 <span className="hidden md:inline">匯出</span>

@@ -12,6 +12,7 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Guests from "./pages/Guests";
+import Reports from "./pages/Reports";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,10 +38,10 @@ const App = () => (
           >
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/guests" element={<Guests />} />
+            <Route path="/reports" element={<Reports />} />
             {/* Additional protected routes will go here */}
             <Route path="/bookings" element={<NotFound />} />
             <Route path="/marketing" element={<NotFound />} />
-            <Route path="/reports" element={<NotFound />} />
           </Route>
           
           {/* Catch-all route */}
