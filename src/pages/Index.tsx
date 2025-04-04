@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
 
 const Index = () => {
   const navigate = useNavigate();
