@@ -144,7 +144,7 @@ const mockGuests = [
 
 const Guests = () => {
   const [search, setSearch] = useState("");
-  const [filterLevel, setFilterLevel] = useState<string>("");
+  const [filterLevel, setFilterLevel] = useState<string>("all");
 
   const filteredGuests = mockGuests.filter(guest => {
     const matchSearch = search === "" || 
@@ -153,7 +153,7 @@ const Guests = () => {
       guest.phone.includes(search) ||
       guest.email.toLowerCase().includes(search.toLowerCase());
     
-    const matchLevel = filterLevel === "" || guest.level === filterLevel;
+    const matchLevel = filterLevel === "all" || guest.level === filterLevel;
     
     return matchSearch && matchLevel;
   });
@@ -197,7 +197,7 @@ const Guests = () => {
                   </div>
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">全部等級</SelectItem>
+                  <SelectItem value="all">全部等級</SelectItem>
                   <SelectItem value="黑卡">黑卡</SelectItem>
                   <SelectItem value="金卡">金卡</SelectItem>
                   <SelectItem value="銀卡">銀卡</SelectItem>
