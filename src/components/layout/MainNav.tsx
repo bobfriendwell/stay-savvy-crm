@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
@@ -56,31 +55,16 @@ export function MainNav() {
           )}
           <NavLink to="/" className="flex items-center gap-2">
             <div className="bg-primary text-primary-foreground rounded-xl p-1.5">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M18 6h.01" />
-                <path d="M7 2h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2" />
-                <path d="M12.5 16 11 17.5c-.5.5-1.5.8-2.4.6a2 2 0 0 1-1.6-1.6c-.2-.9.1-1.9.6-2.4L9 12.5" />
-                <path d="M13 8.4c.5-.5 1.5-.8 2.4-.6a2 2 0 0 1 1.6 1.6c.2.9-.1 1.9-.6 2.4" />
-                <path d="m9 12.5-1.5 1.5" />
-                <path d="M12.5 9 14 7.5" />
-                <path d="M3 15h3v5H3z" />
-              </svg>
+              <img 
+                src="/lovable-uploads/0a2d2d46-ff14-4cc1-85bf-51c1b314de18.png" 
+                alt="Stay Savvy Logo" 
+                className="w-8 h-8"
+              />
             </div>
             <span className="hidden md:inline-block font-bold text-lg">Stay Savvy</span>
           </NavLink>
         </div>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
             <NavLink
@@ -102,7 +86,6 @@ export function MainNav() {
           ))}
         </nav>
 
-        {/* Mobile Navigation */}
         {isMobile && mobileMenuOpen && (
           <div className="absolute top-16 left-0 right-0 bg-background border-b border-input z-50 md:hidden animate-fade-in">
             <nav className="container py-4">

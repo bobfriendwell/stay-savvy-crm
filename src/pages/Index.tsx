@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { useEffect } from "react";
@@ -24,25 +23,11 @@ const Index = () => {
       <header className="container py-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="bg-primary text-primary-foreground rounded-xl p-1.5">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M18 6h.01" />
-              <path d="M7 2h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2" />
-              <path d="M12.5 16 11 17.5c-.5.5-1.5.8-2.4.6a2 2 0 0 1-1.6-1.6c-.2-.9.1-1.9.6-2.4L9 12.5" />
-              <path d="M13 8.4c.5-.5 1.5-.8 2.4-.6a2 2 0 0 1 1.6 1.6c.2.9-.1 1.9-.6 2.4" />
-              <path d="m9 12.5-1.5 1.5" />
-              <path d="M12.5 9 14 7.5" />
-              <path d="M3 15h3v5H3z" />
-            </svg>
+            <img 
+              src="/lovable-uploads/0a2d2d46-ff14-4cc1-85bf-51c1b314de18.png" 
+              alt="Stay Savvy Logo" 
+              className="w-8 h-8"
+            />
           </div>
           <span className="font-bold text-lg">Stay Savvy</span>
         </div>
@@ -111,27 +96,13 @@ const Index = () => {
         <div className="container flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 mb-4 md:mb-0">
             <div className="bg-primary text-primary-foreground rounded-xl p-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M18 6h.01" />
-                <path d="M7 2h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2" />
-                <path d="M12.5 16 11 17.5c-.5.5-1.5.8-2.4.6a2 2 0 0 1-1.6-1.6c-.2-.9.1-1.9.6-2.4L9 12.5" />
-                <path d="M13 8.4c.5-.5 1.5-.8 2.4-.6a2 2 0 0 1 1.6 1.6c.2.9-.1 1.9-.6 2.4" />
-                <path d="m9 12.5-1.5 1.5" />
-                <path d="M12.5 9 14 7.5" />
-                <path d="M3 15h3v5H3z" />
-              </svg>
+              <img 
+                src="/lovable-uploads/0a2d2d46-ff14-4cc1-85bf-51c1b314de18.png" 
+                alt="Stay Savvy Logo" 
+                className="w-6 h-6"
+              />
             </div>
-            <span className="text-sm font-medium">© 2023 Stay Savvy CRM.</span>
+            <span className="text-sm font-medium">© 2025 Stay Savvy CRM powered by WR</span>
           </div>
           <div className="text-sm text-muted-foreground">
             旅館客戶關係管理系統 | 保留所有權利
